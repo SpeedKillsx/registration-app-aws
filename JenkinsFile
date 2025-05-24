@@ -18,7 +18,7 @@ pipeline{
             }
             sh "echo 'Code checked out successfully'"
         }
-
+        
         stage("Build Project") {
             steps {
                 sh "mvn clean package"
