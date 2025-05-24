@@ -9,28 +9,24 @@ pipeline{
             steps {
                 cleanWs()
             }
-            sh "echo 'Workspace cleaned successfully'"
         }
         
         stage("Checkout Code") {
             steps {
                 git branch: 'main', credentialsId: 'github', url: "https://github.com/SpeedKillsx/registration-app-aws"
             }
-            sh "echo 'Code checked out successfully'"
         }
-        
+
         stage("Build Project") {
             steps {
                 sh "mvn clean package"
             }
-            sh "echo 'Project built successfully'"
         }
 
         stage("Test Project"){
             steps{
                 sh "mvn test"
             }
-            sh "echo 'Tests executed successfully'"
         }
     }
 }
