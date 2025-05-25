@@ -5,7 +5,6 @@ pipeline{
         jdk 'Java17'
     }
     environment {
-        MAVEN_OPTS = '-Xmx1024m -XX:MaxPermSize=256m'
         APPLOCATION_NAME = "registration-app-aws"
         APPLOCATION_VERSION = "1.0.0"
         DOCKER_USER = "speedskillsx"
