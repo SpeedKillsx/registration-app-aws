@@ -62,12 +62,12 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry("", "DOCKER_PASS") {
-                        def app = docker.build("${DOCKER_IMAGE}")
+                        docker_image= docker.build("${DOCKER_IMAGE}")
                     }
 
                     docker.withRegistry("", "DOCKER_PASS") {
-                        docker.push("${DOCKER_TAG}")
-                        docker.push("latest")    
+                        docker_image.push("${DOCKER_TAG}")
+                        docker_image.push("latest")
                     }
                 }
             }
