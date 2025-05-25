@@ -62,11 +62,11 @@ pipeline{
         stage("Build & Push a Docker Image") {
             steps {
                 script {
-                    docker.withRegistry(, "DOCKER_PASS") {
+                    docker.withRegistry("", "DOCKER_PASS") {
                         def app = docker.build("${DOCKER_IMAGE}")
                     }
 
-                    docker.withRegistry(, "DOCKER_PASS") {
+                    docker.withRegistry("", "DOCKER_PASS") {
                         docker.push("${DOCKER_TAG}")
                         docker.push("latest")    
                     }
