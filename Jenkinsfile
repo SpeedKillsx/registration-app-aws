@@ -65,7 +65,7 @@ pipeline{
                     }
 
                     docker.withRegistry("", DOCKER_PASS) {
-                        IMAGE_NAME.push("${IMAGE_TAG})")
+                        IMAGE_NAME.push("${IMAGE_TAG}")
                         IMAGE_NAME.push("latest")
                     }
                 }
