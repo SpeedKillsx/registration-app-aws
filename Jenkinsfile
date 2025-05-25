@@ -66,6 +66,7 @@ pipeline {
             steps {
                 script {
                     sh "echo 'Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}'"
+                    sh "cp webapp/target/webapp.war ."
                     docker.withRegistry("", DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                     }
