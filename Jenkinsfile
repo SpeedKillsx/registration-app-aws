@@ -66,7 +66,6 @@ pipeline {
             steps {
                 script {
                     sh "echo 'Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}'"
-                    sh "cp webapp/target/webapp.war ."
                     docker.withRegistry("", DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                     }
@@ -78,6 +77,14 @@ pipeline {
                     }
 
                     sh "echo 'Docker image pushed successfully: ${IMAGE_NAME}:${IMAGE_TAG}'"
+                }
+            }
+        }
+
+        stage("Trivy Scan") {
+            steps {
+                script {
+                    sh ("docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image ${IMAGE_NAME}:${IMAGE_TAG} --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table")
                 }
             }
         }
