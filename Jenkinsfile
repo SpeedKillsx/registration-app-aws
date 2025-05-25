@@ -8,7 +8,7 @@ pipeline{
         APPLOCATION_NAME = "registration-app-aws"
         APPLOCATION_VERSION = "1.0.0"
         DOCKER_USER = "speedskillsx"
-        DOCKER_PASS= "jenkins-docker-token"
+        DOCKER_PASS= "dockerhub"
 
         DOCKER_IMAGE = "${DOCKER_USER}/${APPLOCATION_NAME}"
         DOCKER_TAG = "${APPLOCATION_VERSION}-${BUILD_NUMBER}"
