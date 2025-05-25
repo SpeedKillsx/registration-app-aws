@@ -10,7 +10,7 @@ pipeline{
         DOCKER_USER = "speedskillsx"
         DOCKER_PASS= "dockerhub"
 
-        DOCKER_IMAGE = "${DOCKER_USER}/${APPLOCATION_NAME}"
+        DOCKER_IMAGE = "${DOCKER_USER}"+"/"+"${APPLOCATION_NAME}"
         DOCKER_TAG = "${APPLOCATION_VERSION}-${BUILD_NUMBER}"
     }
     stages{
@@ -62,11 +62,11 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry("", DOCKER_PASS) {
-                        docker_image= docker.build("${DOCKER_IMAGE}")
+                        docker_image= docker.build "${DOCKER_IMAGE}"
                     }
 
                     docker.withRegistry("", DOCKER_PASS) {
-                        docker_image.push("${DOCKER_TAG}")
+                        docker_image.push("${DOCKER_TAG})")
                         docker_image.push("latest")
                     }
                 }
