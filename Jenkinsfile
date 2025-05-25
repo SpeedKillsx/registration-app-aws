@@ -5,13 +5,12 @@ pipeline{
         jdk 'Java17'
     }
     environment {
-        APPLOCATION_NAME = "registration-app-aws"
-        APPLOCATION_VERSION = "1.0.0"
+        APP_NAME = "registration-app-aws"
+        RELEASE = "1.0.0"
         DOCKER_USER = "speedskillsx"
-        DOCKER_PASS= "dockerhub"
-
-        DOCKER_IMAGE = "${DOCKER_USER}"+"/"+"${APPLOCATION_NAME}"
-        DOCKER_TAG = "${APPLOCATION_VERSION}-${BUILD_NUMBER}"
+        DOCKER_PASS= 'dockerhub'
+        IMAGE_NAME = "${DOCKER_USER}"+"/"+"${APP_NAME}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages{
         stage("Clean Workspace") {
@@ -62,12 +61,12 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry("", DOCKER_PASS) {
-                        docker_image= docker.build "${DOCKER_IMAGE}"
+                        IMAGE_NAME = docker.build "${IMAGE_NAME}"
                     }
 
                     docker.withRegistry("", DOCKER_PASS) {
-                        docker_image.push("${DOCKER_TAG})")
-                        docker_image.push("latest")
+                        IMAGE_NAME.push("${IMAGE_TAG})")
+                        IMAGE_NAME.push("latest")
                     }
                 }
             }
