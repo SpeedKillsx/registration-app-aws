@@ -67,12 +67,12 @@ pipeline {
             steps {
                 script {
                     sh "echo 'Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}'"
-                    docker.withRegistry("", DOCKER_PASS) {
+                    docker.withRegistry('', DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                     }
 
                     sh "echo 'Pushing Docker image with tag: ${IMAGE_TAG}'"
-                    docker.withRegistry("", DOCKER_PASS) {
+                    docker.withRegistry('', DOCKER_PASS) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push("latest")
                     }
