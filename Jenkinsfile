@@ -10,7 +10,7 @@ pipeline {
         APP_NAME = "registration-app-aws"
         RELEASE = "1.0.0"
         DOCKER_USER = "speedskillsx"
-        DOCKER_PASS = 'docker-hub'
+        DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         //JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
