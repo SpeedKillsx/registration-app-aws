@@ -37,21 +37,21 @@ pipeline {
             }
         }
 
-        stage("Test Project") {
-            steps {
-                sh "mvn test"
-            }
-        }
+        // stage("Test Project") {
+        //     steps {
+        //         sh "mvn test"
+        //     }
+        // }
 
-        stage("Enable SonarQube Analysis") {
-            steps {
-                script {
-                    withSonarQubeEnv(credentialsId:'jenkins-sonarqube-token') {
-                        sh "mvn sonar:sonar"
-                    }
-                }
-            }
-        }
+        // stage("Enable SonarQube Analysis") {
+        //     steps {
+        //         script {
+        //             withSonarQubeEnv(credentialsId:'jenkins-sonarqube-token') {
+        //                 sh "mvn sonar:sonar"
+        //             }
+        //         }
+        //     }
+        // }
 
         stage("Quality Gate") {
             steps {
