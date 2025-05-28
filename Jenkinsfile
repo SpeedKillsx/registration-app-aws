@@ -70,8 +70,12 @@ pipeline {
                     docker.withRegistry('', DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                     }
+                    
+                    sh"echo 'Docker image built successfully: ${IMAGE_NAME}:${IMAGE_TAG}'"
 
                     sh "echo 'Pushing Docker image with tag: ${IMAGE_TAG}'"
+                    sh "echo 'Build number: ${BUILD_NUMBER} with credentials: ${DOCKER_PASS}'"
+                    sh "echo 'Docker user: ${DOCKER_USER}'"
                     docker.withRegistry('', DOCKER_PASS) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push("latest")
