@@ -1,0 +1,8 @@
+image:
+  repository: speedskillsx/registration-app-aws
+  tag: 1.0.0-49
+replicaCount: 1
+
+app:
+  name: registration-app-aws
+  port: 8080
