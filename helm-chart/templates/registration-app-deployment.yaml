@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: registration-app-deployment
-  namespace : default
+  namespace : registration-app-aws
 spec:
   replicas: 2
   selector:
