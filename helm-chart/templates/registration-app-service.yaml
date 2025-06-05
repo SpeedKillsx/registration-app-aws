@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: registration-app-service
-  namespace: registration-app-aws
+  namespace: default
   labels:
     app: {{ .Values.app.name }}
 spec:
